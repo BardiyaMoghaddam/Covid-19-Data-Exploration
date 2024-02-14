@@ -96,7 +96,7 @@ order by 1,2
 select location, sum(cast(new_deaths as int)) as Total_deaths
 from Covid19.dbo.CovidDeaths
 where continent is null
-and location  not in ('world','European Unioin', 'International')
+and location  not in ('world','European Union', 'International')
 group by location
 order by Total_deaths desc
 
