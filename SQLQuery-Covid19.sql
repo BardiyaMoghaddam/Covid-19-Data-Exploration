@@ -91,6 +91,15 @@ where continent is not null
 group by date
 order by 1,2
 
+
+
+select location, sum(cast(new_deaths as int)) as Total_deaths
+from Covid19.dbo.CovidDeaths
+where continent is null
+and location  not in ('world','European Unioin', 'International')
+group by location
+order by Total_deaths desc
+
 --Here I look at not only the new infected but also the new deaths per date in the world and the percentage of deaths. if you look at the columns information in the left side of SQL software, you can see that total_deaths is varchar whereas new cases is float that is why new cases can be sum but new_deaths can not. so we have to cast new_death as int to be able to sum it.
 select date,sum(new_cases) as New_Infected, sum(cast(new_deaths as int)) as New_deaths, sum(cast(new_deaths as int))/sum(new_cases)*100 as DeathPercentage
 from Covid19.dbo.CovidDeaths
